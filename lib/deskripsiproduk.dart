@@ -36,21 +36,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Container(
-              height: 50,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  FilterChip(label: Text('Semua'), onSelected: (bool value) {}),
-                  SizedBox(width: 10),
-                  FilterChip(label: Text('Buah'), onSelected: (bool value) {}),
-                  SizedBox(width: 10),
-                  FilterChip(label: Text('Sayur'), onSelected: (bool value) {}),
-                  SizedBox(width: 10),
-                  FilterChip(label: Text('Lainnya'), onSelected: (bool value) {}),
-                ],
-              ),
-            ),
+            _buildFilterChips(),
             Expanded(
               child: ListView(
                 children: [
@@ -63,9 +49,27 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFilterChips() {
+    return Container(
+      height: 50,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          FilterChip(label: Text('Semua'), onSelected: (bool value) {}),
+          SizedBox(width: 10),
+          FilterChip(label: Text('Buah'), onSelected: (bool value) {}),
+          SizedBox(width: 10),
+          FilterChip(label: Text('Sayur'), onSelected: (bool value) {}),
+          SizedBox(width: 10),
+          FilterChip(label: Text('Lainnya'), onSelected: (bool value) {}),
         ],
       ),
     );
@@ -82,7 +86,7 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              'https://example.com/apple.jpg', // Replace with your image URL
+              'https://example.com/apple.jpg', // Ganti dengan URL gambar kamu
               height: 150,
               fit: BoxFit.cover,
             ),
