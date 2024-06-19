@@ -1,0 +1,220 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CartPage(),
+    );
+  }
+}
+
+class CartPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Tambahkan aksi kembali di sini
+          },
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Keranjang',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            OrderInfoSection(),
+            SizedBox(height: 16),
+            Expanded(child: OrderList()),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomOrderBar(),
+    );
+  }
+}
+
+class OrderInfoSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Informasi Pemesan',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        ListTile(
+          title: Text('Jalan Kebenaran'),
+          trailing: TextButton(
+            onPressed: () {
+              // Tambahkan aksi untuk mengubah alamat
+            },
+            child: Text('Ubah'),
+          ),
+        ),
+        ListTile(
+          title: Text('Pesan lainnya'),
+          trailing: TextButton(
+            onPressed: () {
+              // Tambahkan aksi untuk mengubah pesan lainnya
+            },
+            child: Text('Ubah'),
+          ),
+        ),
+        SizedBox(height: 16),
+        Text(
+          'Daftar Pesanan',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+}
+
+class OrderList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        OrderListItem(
+          itemName: 'Apel',
+          itemPrice: 'Rp. 29000',
+          quantity: 5,
+          imageUrl: 'https://example.com/apple.jpg', // Replace with your image URL
+        ),
+        OrderListItem(
+          itemName: 'Jeruk',
+          itemPrice: 'Rp. 35000',
+          quantity: 3,
+          imageUrl: 'https://example.com/orange.jpg', // Replace with your image URL
+        ),
+      ],
+    );
+  }
+}
+
+class OrderListItem extends StatelessWidget {
+  final String itemName;
+  final String itemPrice;
+  final int quantity;
+  final String imageUrl;
+
+  OrderListItem({
+    required this.itemName,
+    required this.itemPrice,
+    required this.quantity,
+    required this.imageUrl,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Image.network(
+          imageUrl,
+          width: 50,
+          height: 50,
+          fit: BoxFit.cover,
+        ),
+        title: Text(itemName),
+        subtitle: Text(itemPrice),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: Icon(Icons.remove),
+              onPressed: () {
+                // Tambahkan aksi untuk mengurangi jumlah barang
+              },
+            ),
+            Text(quantity.toString()),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                // Tambahkan aksi untuk menambah jumlah barang
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                // Tambahkan aksi untuk menghapus item dari keranjang
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomOrderBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Jumlah Item',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '8 Item', // Ubah sesuai dengan jumlah item yang sesuai
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+          SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total Pesanan',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Rp. 150k', // Ubah sesuai dengan total harga pesanan
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              // Tambahkan aksi untuk menyelesaikan pemesanan
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+            child: Text('Pesan Sekarang'),
+          ),
+        ],
+      ),
+    );
+  }
+}
