@@ -141,13 +141,13 @@ class OrderList extends StatelessWidget {
           name: 'Apel',
           quantity: '2x',
           price: 'Rp. 29.000',
-          imageUrl: 'https://example.com/apple.jpg', // Replace with your image URL
+          imageUrl: 'https://example.com/apple.jpg', // Ganti dengan URL gambar kamu
         ),
         OrderListItem(
           name: 'Beras',
           quantity: '1x',
           price: 'Rp. 15.000',
-          imageUrl: 'https://example.com/rice.jpg', // Replace with your image URL
+          imageUrl: 'https://example.com/rice.jpg', // Ganti dengan URL gambar kamu
         ),
         TotalPriceItem(
           total: 'Rp. 73.000',
